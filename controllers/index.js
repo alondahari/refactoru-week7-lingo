@@ -1,8 +1,9 @@
 var _ = require('underscore');
+var utils = require('./utils');
 
 var indexController = {
 	index: function(req, res) {
-    this.beglobal.languages.all(function(err, results){
+    utils.beglobal.languages.all(function(err, results){
       var from = _.map(results, function(language){
         return language.from.name;
       });
@@ -21,7 +22,7 @@ var indexController = {
   },
 
   getLangTo: function(req, res) {
-    this.beglobal.languages.all(function(err, results){
+    utils.beglobal.languages.all(function(err, results){
       var theseLangs = _.filter(results, function(result){
         return result.from.name === req.body.language;
       });
