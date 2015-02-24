@@ -26,7 +26,6 @@ var getEngTos = function(results){
 
 }
 
-
 module.exports = {
 
 	index: function(req, res) {
@@ -53,10 +52,20 @@ module.exports = {
     });
   },
 
+  question: function(req, res){
+    data.word = randomWords();
+  },
+
   answerQuiz: function(req, res){
     utils.translateWord('eng', data.languageCode, data.word, function(translated){
+      var result = (translated.translation === req.res.translation)
+      data.wrongAnswers += ~~!result;
+      var feedback = result ? "Correct!" : "Wrong, Loser!";
+      if (++data.questions === 10){
 
-    res.send(translated.translation === req.res.translation);
+      } else {
+        res.render('quiz-answer', {result: feedback});
+      }
     })
   }
 };

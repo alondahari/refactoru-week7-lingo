@@ -1,9 +1,10 @@
 var BeGlobal = require('node-beglobal');
+var key = require('./key.js')
 
 module.exports = {
 
 	beglobal: new BeGlobal.BeglobalAPI({
-	  api_token: 'EnFlBGhzxWZ503BLH5G5ig%3D%3D'
+	  api_token: key
 	}),
 
 	translateWord: function(from, to, word, cb){
