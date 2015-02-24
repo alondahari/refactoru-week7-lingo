@@ -18,6 +18,10 @@ var indexController = {
 	},
 
   translate: function(req, res) {
+
+    
+    
+    console.log(req.body.wordToTranslate);
     res.send(req.body.wordToTranslate);
   },
 
