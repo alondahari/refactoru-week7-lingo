@@ -43,7 +43,7 @@ module.exports = {
   answerQuiz: function(req, res){
     utils.translateWord('eng', this.languageCode, this.word, function(translated){
 
-      res.send(translated);
+      res.send(translated.translation === req.res.translation);
     })
   }
 };
