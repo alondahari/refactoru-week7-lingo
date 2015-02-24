@@ -4,7 +4,7 @@ var indexController = require('./controllers/index.js');
 var quizController = require('./controllers/quiz.js');
 
 
-var app = express();
+var app = express();”
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
