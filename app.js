@@ -17,6 +17,7 @@ app.post('/getLangTo', indexController.getLangTo);
 
 app.get('/quiz', quizController.index);
 app.post('/start-quiz', quizController.startQuiz);
+app.post('/answer-quiz', quizController.answerQuiz);
 
 var server = app.listen(9613, function() {
 	console.log('Express server listening on port ' + server.address().port);

@@ -1,11 +1,16 @@
 var BeGlobal = require('node-beglobal');
 var _ = require('underscore');
+var randomWords = require('random-words');
 
 var beglobal = new BeGlobal.BeglobalAPI({
   api_token: 'EnFlBGhzxWZ503BLH5G5ig%3D%3D'
 });
 
+
 module.exports = {
+
+  word: '',
+
 	index: function(req, res) {
     beglobal.languages.all(function(err, results){
       var fromEnglish = _.filter(results, function(language){
@@ -20,6 +25,12 @@ module.exports = {
   },
 
   startQuiz: function(req, res){
-    res.render('quiz-question', req.body);
+    this.word = randomWords()
+    var data = _.extend(req.body, {word: this.word})
+    res.render('quiz-question', data);
+  },
+
+  answerQuiz: function(req, res){
+
   }
 };

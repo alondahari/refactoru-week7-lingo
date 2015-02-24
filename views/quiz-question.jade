@@ -2,9 +2,11 @@ extends layout
 
 block content
   h1 #{language} Quiz!
-  h2 Question 1
+  h2 Question 1:
+  p Translate the word "#{word}"
 
-  form(action='/start-quiz', method='POST')
+
+  form(action='/answer-quiz', method='POST')
     input(type="text", placeholder="Enter Translation...")
 
     input(type='submit', value='Answer')
