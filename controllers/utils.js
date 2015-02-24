@@ -6,21 +6,17 @@ module.exports = {
 	  api_token: 'EnFlBGhzxWZ503BLH5G5ig%3D%3D'
 	}),
 
-	translateWord: function(from, to, word){
-	  beglobal.translations.translate(
+	translateWord: function(from, to, word, cb){
+	  this.beglobal.translations.translate(
 	    {text: word, from: from, to: to},
 	    function(err, results) {
 	      if (err) {
 	        return console.log(err);
 	      }
 
-	      return results;
+	      cb(results);
 	    }
 	  );
-	},
-
-	getCode: function(language){
-
 	}
 
 }
