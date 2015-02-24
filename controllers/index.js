@@ -1,13 +1,8 @@
-var BeGlobal = require('node-beglobal');
 var _ = require('underscore');
-
-var beglobal = new BeGlobal.BeglobalAPI({
-  api_token: 'EnFlBGhzxWZ503BLH5G5ig%3D%3D'
-});
 
 var indexController = {
 	index: function(req, res) {
-    beglobal.languages.all(function(err, results){
+    this.beglobal.languages.all(function(err, results){
       var from = _.map(results, function(language){
         return language.from.name;
       });
@@ -22,7 +17,7 @@ var indexController = {
   },
 
   getLangTo: function(req, res) {
-    beglobal.languages.all(function(err, results){
+    this.beglobal.languages.all(function(err, results){
       var theseLangs = _.filter(results, function(result){
         return result.from.name === req.body.language;
       });
