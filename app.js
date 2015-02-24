@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var indexController = require('./controllers/index.js');
+var quizController = require('./controllers/quiz.js');
 
 
 var app = express();
@@ -10,6 +11,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', indexController.index);
+app.get('/quiz', quizController.index);
 
 app.post('/translate', indexController.translate);
 app.post('/getLangTo', indexController.getLangTo);
