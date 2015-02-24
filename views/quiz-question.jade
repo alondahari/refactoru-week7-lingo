@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 #{language} Quiz!
+  h2 Question 1
+
+  form(action='/start-quiz', method='POST')
+    input(type="text", placeholder="Enter Translation...")
+
+    input(type='submit', value='Answer')

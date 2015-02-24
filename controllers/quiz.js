@@ -17,5 +17,9 @@ module.exports = {
       var languages = _.pluck(toLanguages, 'name');
       res.render('quiz', {data: languages});
     });
+  },
+
+  startQuiz: function(req, res){
+    res.render('quiz-question', req.body);
   }
 };

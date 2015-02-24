@@ -4,8 +4,8 @@ block content
   h1 Quiz!
   h2 What language would you like to study?
 
-  form(action='/translate', method='POST')
-    select#langFrom(name='langFrom')
+  form(action='/start-quiz', method='POST')
+    select(name='language')
       option Language from:
       each language in data
         option()= language
