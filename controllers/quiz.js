@@ -7,6 +7,15 @@ var beglobal = new BeGlobal.BeglobalAPI({
 
 module.exports = {
 	index: function(req, res) {
-    res.render('quiz')
-	}
+    beglobal.languages.all(function(err, results){
+      var fromEnglish = _.filter(results, function(language){
+        return language.from.name === 'English'
+      });
+      var toLanguages = _.map(fromEnglish, function(language){
+        return language.to;
+      })
+      var languages = _.pluck(toLanguages, 'name');
+      res.render('quiz', {data: languages});
+    });
+  }
 };
