@@ -1,4 +1,17 @@
 extends layout
 
 block content
-	h1 Hello Boulder!
+  h1 Translate a Word!
+
+  form(action='/translate', method='POST')
+    select#langFrom(name='langFrom')
+      option Language from:
+      each language in data
+        option()= language
+
+    select(name='langTo')
+      option Language to:
+
+    input(type='text', name='wordToTranslate', placeholder='Enter word to translate')
+
+    input(type='submit', value='Translate Word')
