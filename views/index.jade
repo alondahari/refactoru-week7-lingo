@@ -1,17 +1,19 @@
 extends layout
 
 block content
-  h1 Translate a Word!
+	h1 Translate a Word!
 
-  form#myForm(action='/translate', method='POST')
-    select#langFrom(name='langFrom')
-      option Language from:
-      each language in data
-        option()= language
+	form#myForm(action='/translate', method='POST')
+		select#langFrom(name='langFrom')
+			option Language from:
+			each language in data
+				option(value=language.code)= language.name
 
-    select#langTo(name='langTo')
-      option Language to:
+		select#langTo(name='langTo')
+			option Language to:
 
-    input#myWord(type='text', name='wordToTranslate', placeholder='Enter word to translate')
+		input#myWord(type='text', name='wordToTranslate', placeholder='Enter word to translate')
 
-    input#translateSubmit(type='submit', value='Translate Word')
+		input#translateSubmit(type='submit', value='Translate Word')
+
+		p#translatedWord

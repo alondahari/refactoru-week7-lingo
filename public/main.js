@@ -7,7 +7,7 @@ $(document).on('ready', function(){
       // console.log(data);
       $('#langTo').empty();
       $.each(data, function(i, val){
-        $('#langTo').append($('<option>' + val + '</option>'));
+        $('#langTo').append($('<option value=' + val.code + '>' + val.name + '</option>'));
       });
     });
   });
@@ -15,13 +15,21 @@ $(document).on('ready', function(){
   $('#translateSubmit').on('click', function(e){
     e.preventDefault();
 
-    var theWordToTranslate = $('#myWord').val();
-    var fromLang = $('#langFrom').val();
-    var toLang = $('#langTo').val();
+    // var theWordToTranslate = $('#myWord').val();
+    // var fromLang = $('#langFrom').val();
+    // var toLang = $('#langTo').val();
 
-    $.post
+    var myDataBefore = {
+      word: $('#myWord').val(),
+      fromLang: $('#langFrom').val(),
+      toLang: $('#langTo').val()
+    };
 
-    console.log(theWordToTranslate, fromLang, toLang);
+    $.post('/translate', myDataBefore, function(myDataAfter){
+      $('#translatedWord').text(myDataAfter.translation);
+    });
+
+    // console.log(theWordToTranslate, fromLang, toLang);
   });
 
 });
