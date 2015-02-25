@@ -54,15 +54,23 @@ module.exports = {
 
   question: function(req, res){
     data.word = randomWords();
+    res.render('quiz-question', {
+      language: req.body.language,
+      word: data.word,
+      question: data.questions
+    });
   },
 
   answerQuiz: function(req, res){
     utils.translateWord('eng', data.languageCode, data.word, function(translated){
       var result = (translated.translation === req.res.translation)
       data.wrongAnswers += ~~!result;
+      if (data.wrongAnswers === 3) {
+        res.render('quiz-fail')
+      }
       var feedback = result ? "Correct!" : "Wrong, Loser!";
-      if (++data.questions === 10){
-
+      if (++data.questions === 11){
+        res.send('end!')
       } else {
         res.render('quiz-answer', {result: feedback});
       }
