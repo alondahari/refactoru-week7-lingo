@@ -16,6 +16,7 @@ app.post('/translate', indexController.translate);
 app.post('/getLangTo', indexController.getLangTo);
 
 app.get('/quiz', quizController.index);
+app.get('/question-quiz', quizController.question);
 app.post('/start-quiz', quizController.startQuiz);
 app.post('/answer-quiz', quizController.answerQuiz);
 
