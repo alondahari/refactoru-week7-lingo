@@ -9,7 +9,7 @@ var data = {
   questions: 1,
   wrongAnswers: 0
 
-}
+};
 
 /**
  * get array of all the languages english translates to
@@ -18,13 +18,13 @@ var data = {
  */
 var getEngTos = function(results){
   var fromEnglish = _.filter(results, function(language){
-    return language.from.name === 'English'
+    return language.from.name === 'English';
   });
   return _.map(fromEnglish, function(language){
     return language.to;
-  })
+  });
 
-}
+};
 
 module.exports = {
 
@@ -63,16 +63,19 @@ module.exports = {
 
   answerQuiz: function(req, res){
     utils.translateWord('eng', data.languageCode, data.word, function(translated){
-      var result = (translated.translation === req.res.translation)
+      // console.log(translated.translation, req.res.translation);
+      var result = (translated.translation === req.body.translation)
       data.wrongAnswers += ~~!result;
       if (data.wrongAnswers === 3) {
+        data.wrongAnswers = 0;
+        data.questions = 1;
         res.render('quiz-fail')
       }
       var feedback = result ? "Correct!" : "Wrong, Loser!";
       if (++data.questions === 11){
         res.send('end!')
       } else {
-        res.render('quiz-answer', {result: feedback});
+        res.render('quiz-answer', {result: feedback, translation: translated.translation});
       }
     })
   }
